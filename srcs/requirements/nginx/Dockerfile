@@ -1,0 +1,9 @@
+FROM alpine:3.19.1
+
+RUN apk --no-cache add nginx
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
