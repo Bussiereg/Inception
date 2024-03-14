@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb
+    volumes:
+      - db-data:/var/lib/mariadb
+volumes:
+  db-data:
