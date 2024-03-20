@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bookworm
 
 RUN apt update -y
 RUN apt upgrade -y
@@ -11,5 +11,3 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./tool/script.sh /
 
 CMD ["/script.sh"]
-
-# CMD [ "./conf/script.sh", "daemon off;" ]
