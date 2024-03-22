@@ -1,13 +1,13 @@
-FROM debian:buster
+FROM debian:bookworm
 
-RUN apt update -y && apt upgrade -y
+RUN apt update -y
+RUN apt upgrade -y
 RUN apt install vim -y
-RUN apt-get install mariadb-server
+RUN apt install procps -y
+RUN apt-get install mariadb-server -y
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
+COPY ./tool/script.sh /
 
-
-# EXPOSE port
-
-# ENTRYPOINT [ "executable" ]
+CMD ["/script.sh"]
