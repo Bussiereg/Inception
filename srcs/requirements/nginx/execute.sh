@@ -17,6 +17,6 @@ read answer
 if [ "$answer" = "y" ]; then
     echo "Use 'exit' to stop container"
     docker run -it inception
-else
+elseauto-config.sh
     docker run inception
 fi
