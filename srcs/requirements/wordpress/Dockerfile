@@ -20,4 +20,4 @@ COPY ./tool/php.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY ./tool/auto-config.sh .
 COPY .env .env
 
-ENTRYPOINT [ "bash", "auto-config.sh" ]
+# ENTRYPOINT [ "bash", "auto-config.sh" ]
