@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -a
-source .env
-set +a
-
 service mariadb  start;
 mariadb -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;"
 mariadb -e "CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';"
