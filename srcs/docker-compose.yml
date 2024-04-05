@@ -12,7 +12,7 @@ services:
       - .env
     volumes:
       - mariadb:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     expose:
       - "3306"
   wordpress:
@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mariadb
-    restart: on-failure
+    restart: always
     expose:
       - "9000"
   nginx:
@@ -46,7 +46,7 @@ services:
       - "443:443"
     env_file: 
       - .env
-    restart: on-failure
+    restart: always
       
 volumes:
   wordpress:
@@ -54,13 +54,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: 'home/gbussier/data/wordpress'
+      device: '/home/gbussier/Documents/Inception/srcs/requirements/wordpress'
   mariadb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: 'home/gbussier/data/mariadb'
+      device: '/home/gbussier/Documents/Inception/srcs/requirements/mariadb'
 
 networks:
   inception:
