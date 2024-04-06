@@ -54,13 +54,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: '/home/gbussier/Documents/Inception/srcs/requirements/wordpress'
+      device: '/home/gbussier/data/wordpress'
   mariadb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: '/home/gbussier/Documents/Inception/srcs/requirements/mariadb'
+      device: '/home/gbussier/data/mariadb'
 
 networks:
   inception:
