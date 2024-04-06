@@ -7,7 +7,7 @@ directory="/run/php"
 # Check if the directory exists
 if [ ! -d "$directory" ]; then
     # Create the directory
-    sudo mkdir -p "$directory"
+    mkdir -p "$directory"
     echo "Directory $directory created successfully."
 else
     echo "Directory $directory already exists."
