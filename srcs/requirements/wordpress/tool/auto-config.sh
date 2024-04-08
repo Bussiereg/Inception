@@ -6,23 +6,25 @@
 
 sleep 10
 
-wp config create --allow-root --path='/var/www/wordpress' \
-                --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
-                --dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306
+wp core download --allow-root
 
-echo "wp core install......."
-wp core install --allow-root --path='/var/www/wordpress'\
-            --url=$DOMAIN_NAME \
-            --title=$WP_TITLE \
-            --admin_user=$WP_ADMIN_USER \
-            --admin_password=$WP_ADMIN_PASSWORD \
-            --admin_email=$WP_ADMIN_EMAIL \
-            --skip-email
+# wp config create --allow-root --path='/var/www/wordpress' \
+#                 --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
+#                 --dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306
 
-echo "wp user create........"
-wp user create --allow-root --path='/var/www/wordpress' \
-            --user-login=$WP_USER2 \
-            --user_pass=$WP_USER2_PASSWORD \
+# echo "wp core install......."
+# wp core install --allow-root --path='/var/www/wordpress'\
+#             --url=$DOMAIN_NAME \
+#             --title=$WP_TITLE \
+#             --admin_user=$WP_ADMIN_USER \
+#             --admin_password=$WP_ADMIN_PASSWORD \
+#             --admin_email=$WP_ADMIN_EMAIL \
+#             --skip-email
+
+# echo "wp user create........"
+# wp user create --allow-root --path='/var/www/wordpress' \
+#             --user-login=$WP_USER2 \
+#             --user_pass=$WP_USER2_PASSWORD \
     
 
 directory="/run/php"

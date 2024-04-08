@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt update -y && apt upgrade -y
+RUN apt-get update -y && apt-get upgrade -y
 # RUN apt install vim -y
 # RUN apt install procps -y
 RUN apt-get install mariadb-server -y
