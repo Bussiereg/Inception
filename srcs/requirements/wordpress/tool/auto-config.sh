@@ -1,32 +1,14 @@
 #!/bin/bash
 
-set -a
-source .env
-set +a
+# set -a
+# source .env
+# set +a
 
 sleep 10
 
-directory="/run/php"
-
-# Check if the directory exists
-if [ ! -d "$directory" ]; then
-    # Create the directory
-    mkdir -p $directory
-    echo "Directory $directory created successfully."
-else
-    echo "Directory $directory already exists."
-fi
-
-if [ ! -e /var/www/wordpress/wp-config.php ]; then
-    wp config create --allow-root --path='/var/www/wordpress' \
-                    --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
-                    --dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306
-    echo "configuration of wordpress: success"
-else
-    echo "wp-config-sample.php already exist"
-fi
-
-wp core download --allow-root
+wp config create --allow-root --path='/var/www/wordpress' \
+                --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
+                --dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306
 
 echo "wp core install......."
 wp core install --allow-root --path='/var/www/wordpress'\
@@ -43,7 +25,20 @@ wp user create --allow-root --path='/var/www/wordpress' \
             --user_pass=$WP_USER2_PASSWORD \
     
 
-/usr/sbin/php-fpm7.4
+directory="/run/php"
+
+# Check if the directory exists
+
+
+if [ ! -d "$directory" ]; then
+    # Create the directory
+    mkdir -p $directory
+    echo "Directory $directory created successfully."
+else
+    echo "Directory $directory already exists."
+fi
+
+/usr/sbin/php-fpm7.4 -F
 
 # service php7.4-fpm start
 
