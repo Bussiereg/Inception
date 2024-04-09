@@ -15,6 +15,7 @@ services:
     restart: always
     expose:
       - "3306"
+      
   wordpress:
     container_name: wordpress
     env_file: 
