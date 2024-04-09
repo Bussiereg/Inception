@@ -10,4 +10,4 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./tool/script.sh /
 # COPY .env .env
 
-CMD ["bash", "/script.sh"]
+ENTRYPOINT ["bash", "/script.sh"]
