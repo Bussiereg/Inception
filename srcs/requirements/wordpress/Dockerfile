@@ -3,7 +3,7 @@ FROM debian:bullseye
 RUN apt update -y && apt upgrade -y
 RUN apt-get -y install wget
 # RUN apt -y install systemd
-RUN apt-get -y install php7.3 php-fpm php-mysql
+RUN apt-get -y install php7.4 php-fpm php-mysql
 RUN apt-get -y install mariadb-client
 
 RUN wget https://wordpress.org/wordpress-6.4.3.tar.gz -P /var/www
@@ -18,4 +18,4 @@ COPY ./tool/php.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./tool/auto-config.sh .
 # COPY .env .
 
-# ENTRYPOINT [ "bash", "auto-config.sh" ]
+ENTRYPOINT [ "bash", "auto-config.sh" ]

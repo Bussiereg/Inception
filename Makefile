@@ -1,16 +1,34 @@
-
+wp_volume=/home/gbussier/data/wordpress
+mariadb_volume=/home/gbussier/data/mariadb
 
 up:
-	sudo docker-compose up
-
-build:
-	sudo docker-compose up -d --build
+	mkdir -p $(wp_volume)
+	mkdir -p $(mariadb_volume)
+	docker compose -f srcs/docker-compose.yml up -d --build 
 
 down:
-	sudo docker-compose down
+	docker compose -f srcs/docker-compose.yml down
+
+rm_volume:
+	docker volume rm srcs_mariadb
+	docker volume rm srcs_wordpress
 
 rm_network:
-	sudo docker network prune -f
+	docker network prune -f
 
 rm_container:
-	sudo docker container prune -f
+	docker container prune -f
+
+rm_image:
+	docker image prune -f
+
+rm_system:
+	docker system prune -af
+
+clean: rm_image rm_container rm_network rm_system  rm_volume
+	sudo rm -rf $(wp_volume)
+	sudo rm -rf $(mariadb_volume)
+
+fclean: down clean
+
+re: fclean up
