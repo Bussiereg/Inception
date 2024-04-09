@@ -5,9 +5,9 @@ RUN apt-get update -y && apt-get upgrade -y
 # RUN apt install procps -y
 RUN apt-get install mariadb-server -y
 
-COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY ./tool/script.sh /
+COPY tool/script.sh /
 # COPY .env .env
 
 ENTRYPOINT ["bash", "/script.sh"]
