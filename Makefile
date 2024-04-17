@@ -1,18 +1,31 @@
+NAME := inception
+PATH_INCEPTION := /home/${USER}/Documents/Inception
+
 wp_volume=/home/gbussier/data/wordpress
 mariadb_volume=/home/gbussier/data/mariadb
 
-up:
+${NAME}:
 	mkdir -p $(wp_volume)
 	mkdir -p $(mariadb_volume)
-	docker compose -f srcs/docker-compose.yml up -d --build 
+	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml up --build 
 
 down:
-	docker compose -f srcs/docker-compose.yml down
+	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml down
+
+stop:
+	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml stop
+
+start:
+	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml start
 
 rm_volume:
-	docker volume rm srcs_mariadb
-	docker volume rm srcs_wordpress
-
+	@if docker volume inspect srcs_mariadb >/dev/null 2>&1; then \
+	docker volume rm srcs_mariadb; \
+		fi
+	@if docker volume inspect srcs_wordpress >/dev/null 2>&1; then \
+	docker volume rm srcs_wordpress; \
+		fi
+	
 rm_network:
 	docker network prune -f
 
@@ -25,10 +38,10 @@ rm_image:
 rm_system:
 	docker system prune -af
 
-clean: rm_image rm_container rm_network rm_system  rm_volume
+clean: down rm_image rm_container rm_network rm_system
+
+fclean: down rm_image rm_container rm_volume rm_network rm_system 
 	sudo rm -rf $(wp_volume)
 	sudo rm -rf $(mariadb_volume)
 
-fclean: down clean
-
-re: fclean up
+re: fclean ${NAME}

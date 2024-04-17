@@ -2,7 +2,7 @@
 
 echo "start mariadb"
 service mariadb start;
-sleep 1
+sleep 2
 echo "create database"
 mariadb -u root -p${MYSQL_ROOT_PASSWORD}  -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;"
 sleep 2
