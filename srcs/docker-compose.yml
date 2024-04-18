@@ -10,6 +10,12 @@ services:
       dockerfile: Dockerfile
     env_file: 
       - .env
+    environment:
+      MYSQL_ROOT_PASSWORD : /run/secrets/db_root_password
+      MYSQL_PASSWORD : /run/secrets/db_password
+    secrets:
+      - db_root_password
+      - db_password
     restart: on-failure
     expose:
       - "3306"
@@ -42,6 +48,14 @@ services:
       dockerfile: Dockerfile
     env_file: 
       - .env
+    environment:
+      WP_ADMIN_PASSWORD : /run/secrets/wp_admin_password
+      WP_USER2_PASSWORD : /run/secrets/wp_user2_password
+      MYSQL_PASSWORD : /run/secrets/db_password
+    secrets:
+      - db_password
+      - wp_admin_password
+      - wp_user2_password
     restart: on-failure
     depends_on:
       - "mariadb"
@@ -62,6 +76,16 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/gbussier/data/mariadb'
+
+secrets:
+   db_password:
+     file: ../secrets/db_password.txt
+   db_root_password:
+     file: ../secrets/db_root_password.txt
+   wp_admin_password:
+     file: ../secrets/wp_admin_password.txt
+   wp_user2_password:
+     file: ../secrets/wp_user2_password.txt
 
 networks:
   inception:
