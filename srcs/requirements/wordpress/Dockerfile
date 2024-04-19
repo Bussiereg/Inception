@@ -5,7 +5,6 @@ RUN wget https://wordpress.org/latest.zip -P /var/www
 
 COPY ./conf/php.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-
 RUN cd /var/www && unzip latest.zip && rm latest.zip
 
 RUN	chown -R root:root /var/www/wordpress && wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
