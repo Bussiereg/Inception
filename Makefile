@@ -1,13 +1,18 @@
 NAME := inception
 PATH_INCEPTION := /home/${USER}/Documents/Inception
 
-wp_volume=/home/gbussier/data/wordpress
-mariadb_volume=/home/gbussier/data/mariadb
+wp_volume=/home/${USER}/data/wordpress
+mariadb_volume=/home/${USER}/data/mariadb
 
 ${NAME}:
 	mkdir -p $(wp_volume)
 	mkdir -p $(mariadb_volume)
 	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml up --build 
+
+up:
+	mkdir -p $(wp_volume)
+	mkdir -p $(mariadb_volume)
+	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml up -d --build 
 
 down:
 	docker compose -f $(PATH_INCEPTION)/srcs/docker-compose.yml down
