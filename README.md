@@ -7,7 +7,7 @@
 - [Setup](#setup)
 
 ## Introduction
-Inception is a project designed for School 42 that aims to familiarize students with Docker, containerization, and the management of a multi-container environment. The project involves setting up several interconnected services using Docker Compose by setting up a LEMP stack.
+Inception is a project that aims to familiarize with Docker, containerization, and the management of a multi-container environment. The project involves setting up several interconnected services using Docker Compose by setting up a LEMP stack.
 
 A LEMP stack is a software stack used for web development. It stands for Linux, Nginx, MySQL/ MariaDB, and PHP. Each component of the stack serves a specific purpose:
 
